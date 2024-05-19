@@ -1,2 +1,2 @@
 if __name__ == "__main__":
-    print("Begin labs")
+    print(21 % 9)
