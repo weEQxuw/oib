@@ -10,7 +10,7 @@ class Assymetric:
         pass
 
     @staticmethod
-    def generate_key(self) -> tuple:
+    def generate_keys() -> tuple:
         """_summary_
 
         Returns:
