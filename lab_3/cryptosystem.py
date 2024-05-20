@@ -8,7 +8,8 @@ class Cryptosystem:
     def __init__(self) -> None:
         pass
 
-    def encrypt(path_text, sym_key) -> bytes:
+    @staticmethod
+    def encrypt(path_text: str, sym_key: bytes) -> bytes:
         text = read_file(path_text)
         nonce = os.urandom(8)
         counter = 0
@@ -16,7 +17,14 @@ class Cryptosystem:
         algorithm = algorithms.ChaCha20(sym_key, full_nonce)
         cipher = Cipher(algorithm, mode=None)
         encryptor = cipher.encryptor()
-        return encryptor.update()
+        cipher_text = encryptor.update(text)
+        return full_nonce + cipher_text
 
-    def decrypt():
-        pass
+    @staticmethod
+    def decrypt(encrypt_data: bytes, sym_key: bytes) -> bytes:
+        full_nonce = encrypt_data[:16]
+        cipher_text = encrypt_data[16:]
+        algorithm = algorithms.ChaCha20(sym_key, full_nonce)
+        cipher = Cipher(algorithm, mode=None)
+        decryptor = cipher.decryptor()
+        return decryptor.update(cipher_text)
