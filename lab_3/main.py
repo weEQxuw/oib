@@ -31,6 +31,12 @@ def main():
             encrypted_text = CryptoSystem.encrypt(text, sym_key, private_key)
             FileHelper.write_bytes(paths["encrypted_file"], encrypted_text)
         case(False, False, True):
+            encrypted_text = FileHelper.read_bytes(paths["encrypted_file"])
+            sym_key = FileHelper.read_bytes(paths['symmetric_key'])
+            private_key = FileHelper.read_private_key(paths['secret_key'])
+            decrypted_text = CryptoSystem.decrypt(
+                encrypted_text, sym_key, private_key)
+            FileHelper.write_file(decrypted_text, paths["decrypted_file"])
 
 
 if __name__ == "__main__":

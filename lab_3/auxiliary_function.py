@@ -164,7 +164,7 @@ class FileHelper:
         try:
             with open(path, 'rb') as pem_in:
                 private_bytes = pem_in.read()
-                d_private_key = load_pem_private_key(
+                return load_pem_private_key(
                     private_bytes, password=None,)
         except FileNotFoundError:
             print("Произошла какая-то ошибка")
