@@ -15,6 +15,17 @@ class CryptoSystem:
 
     @staticmethod
     def encrypt(text: str, sym_key: bytes, private_key: rsa.RSAPublicKey) -> bytes:
+        """
+            method for text encryption
+
+        Args:
+            text (str): the text to encrypt
+            sym_key (bytes): symmetric key
+            private_key (rsa.RSAPublicKey): RSA private key
+
+        Returns:
+            bytes: encrypted text
+        """
         sym_key = Assymetric.decrypt_key(sym_key, private_key)
         nonce = os.urandom(8)
         counter = 0
@@ -28,6 +39,17 @@ class CryptoSystem:
 
     @staticmethod
     def decrypt(encrypt_data: bytes, sym_key: bytes, private_key: rsa.RSAPublicKey) -> str:
+        """
+            method for text decrypt
+
+        Args:
+            encrypt_data (bytes): encrypted text
+            sym_key (bytes): symmetric key
+            private_key (rsa.RSAPublicKey): RSA private key
+
+        Returns:
+            str: the text
+        """
         sym_key = Assymetric.decrypt_key(sym_key, private_key)
         full_nonce = encrypt_data[:16]
         cipher_text = encrypt_data[16:]
@@ -40,6 +62,12 @@ class CryptoSystem:
 
     @staticmethod
     def generate_key() -> tuple:
+        """
+            generates both a symmetric key and an asymmetric one
+
+        Returns:
+            tuple: symmetric_key, private_key, public_key
+        """
         symmetric_key = Symmetric.generate_key()
         private_key, public_key = Assymetric.generate_keys()
         symmetric_key = Assymetric.encrypt_key(symmetric_key, public_key)

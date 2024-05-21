@@ -5,30 +5,31 @@ from cryptography.hazmat.primitives import hashes
 
 class Assymetric:
     def __init__(self) -> None:
-        """_summary_
+        """
+            the designer, but for the sake of security, it was decided not to store the keys
         """
         pass
 
     @staticmethod
     def generate_keys() -> tuple:
-        """_summary_
-
+        """ 
+            generating a key pair for an asymmetric encryption algorithm
         Returns:
-            tuple: _description_
+            tuple: returns A public and private key
         """
         keys = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         return keys, keys.public_key()
 
     @staticmethod
     def encrypt_key(symmetric_key: bytes, public_key: rsa.RSAPublicKey) -> bytes:
-        """_summary_
-
+        """
+            key encryption using RSA-OAEP
         Args:
-            symmetric_key (bytes): _description_
-            public_key (rsa.RSAPublicKey): _description_
+            symmetric_key (bytes): generated symmetric key
+            public_key (rsa.RSAPublicKey): assymetric public key generated
 
         Returns:
-            bytes: _description_
+            bytes: encrypt symmetric key
         """
         return public_key.encrypt(symmetric_key, OAEP(
             mgf=MGF1(algorithm=hashes.SHA256()),
@@ -37,14 +38,14 @@ class Assymetric:
 
     @staticmethod
     def decrypt_key(symmeric_key: bytes, private_key: rsa.RSAPrivateKey) -> bytes:
-        """_summary_
-
+        """
+            decryption of text by an asymmetric algorithm
         Args:
-            symmeric_key (bytes): _description_
-            private_key (rsa.RSAPrivateKey): _description_
+            symmeric_key (bytes): encrypt symmetric key
+            private_key (rsa.RSAPrivateKey): assymetric private key generated
 
         Returns:
-            bytes: _description_
+            bytes:  decrypt symmetric key
         """
         return private_key.decrypt(symmeric_key, OAEP(
             mgf=MGF1(algorithm=hashes.SHA256()),

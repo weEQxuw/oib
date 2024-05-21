@@ -76,12 +76,12 @@ class FileHelper:
     @staticmethod
     def read_bytes(path: str) -> bytes:
         """
-
+            reads bytes from a file
         Args:
-            path (str): _description_
+            path (str): the path of the lo file
 
         Returns:
-            bytes: _description_
+            bytes: returns the contents of the file
         """
         try:
             with open(path, 'rb') as f:
@@ -91,11 +91,12 @@ class FileHelper:
 
     @staticmethod
     def write_bytes(path: str, data: bytes) -> None:
-        """_summary_
+        """
+            saves information as bytes to a file
 
         Args:
-            path (str): _description_
-            data (bytes): _description_
+            path (str): the path of the lo file
+            data (bytes): inforamtion
         """
         try:
             with open(path, "wb") as f:
@@ -105,11 +106,11 @@ class FileHelper:
 
     @staticmethod
     def write_public_key(path: str, public_key: rsa.RSAPublicKey) -> None:
-        """_summary_
-
+        """
+            saves the RSA public key
         Args:
-            path (str): _description_
-            public_key (rsa.RSAPublicKey): _description_
+            path (str): the path of the lo file
+            public_key (rsa.RSAPublicKey): RSA public key
         """
         try:
             with open(path, 'wb') as public_out:
@@ -120,11 +121,12 @@ class FileHelper:
 
     @staticmethod
     def write_private_key(path: str, private_key: rsa.RSAPrivateKey) -> None:
-        """_summary_
+        """
+            saves the RSA private key
 
         Args:
-            path (str): _description_
-            private_key (rsa.RSAPrivateKey): _description_
+            path (str): the path of the lo file
+            private_key (rsa.RSAPrivateKey): RSA private key
         """
         try:
             with open(path, 'wb') as private_out:
@@ -135,14 +137,15 @@ class FileHelper:
             print("Произошла какая-то ошибка")
 
     @staticmethod
-    def read_public_key(path: str) -> rsa.RSAPrivateKey:
-        """_summary_
+    def read_public_key(path: str) -> rsa.RSAPublicKey:
+        """
+            reading the public key from the file
 
         Args:
-            path (str): _description_
+            path (str): the path of the lo file
 
         Returns:
-            rsa.RSAPrivateKey: _description_
+            rsa.RSAPublicKey: RSA public key
         """
         try:
             with open(path, 'rb') as pem_in:
@@ -153,13 +156,14 @@ class FileHelper:
 
     @staticmethod
     def read_private_key(path: str) -> rsa.RSAPrivateKey:
-        """_summary_
+        """ 
+            reading the private key from the file
 
         Args:
-            path (str): _description_
+            path (str): the path of the lo file
 
         Returns:
-            rsa.RSAPrivateKey: _description_
+            rsa.RSAPrivateKey: RSA private key
         """
         try:
             with open(path, 'rb') as pem_in:

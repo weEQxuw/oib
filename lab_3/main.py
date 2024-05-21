@@ -1,9 +1,13 @@
 import argparse
+
 from auxiliary_function import FileHelper
 from cryptosystem import CryptoSystem
 
 
-def main():
+def main() -> None:
+    """
+        the main function for working with encryption and key generation
+    """
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-gen', '--generation',
