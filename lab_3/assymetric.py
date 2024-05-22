@@ -4,6 +4,14 @@ from cryptography.hazmat.primitives import hashes
 
 
 class Assymetric:
+    """
+        The RSA encryption algorithm uses two different keys: 
+        one for encrypting the message, and the second — different from the first, 
+        but related to it — for decryption. The encryption key (public, unclassified key) 
+        is based on the product of two huge primes, 
+        and the decryption key (private, secret key) is based on the primes themselves.
+    """
+
     def __init__(self) -> None:
         """
             the designer, but for the sake of security, it was decided not to store the keys

@@ -8,6 +8,9 @@ from cryptography.hazmat.primitives.serialization import load_pem_public_key, lo
 
 
 class FileHelper:
+    """
+         An auxiliary class that contains static methods for working with reading from files
+    """
     @staticmethod
     def read_file(name: str) -> str:
         """

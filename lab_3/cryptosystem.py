@@ -10,6 +10,10 @@ from assymetric import Assymetric
 
 
 class CryptoSystem:
+    """
+        The hybrid cryptosystem will combine the advantages of symmetric and asymmetric encryption algorithms
+    """
+
     def __init__(self) -> None:
         pass
 
