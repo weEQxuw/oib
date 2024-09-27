@@ -2,82 +2,82 @@ import json
 from pathlib import Path
 
 
-def ReadTheKey(FilePath: str) -> dict[str, str]:
+def read_key(file_path: str) -> dict[str, str]:
     """Reads the file with the decryption key"""
     try:
-        FilePath = Path(FilePath)
-        with open(FilePath, "r", encoding = "utf-8") as File:
-            Data = json.load(File)
-            return Data
+        file_path = Path(file_path)
+        with open(file_path, "r", encoding = "utf-8") as file:
+            data = json.load(file)
+            return data
     except:
         return None
 
 
-def ReadTheText(FilePath: str) -> str:
+def read_text(file_path: str) -> str:
     """Reads the text from the file"""
     try:
-        FilePath = Path(FilePath)
-        with open(FilePath, "r", encoding = "utf-8") as File:
-            Src = File.read()
-            return Src
+        file_path = Path(file_path)
+        with open(file_path, "r", encoding = "utf-8") as file:
+            src = file.read()
+            return src
     except:
         return None
 
 
-def Decryption(Text: str, Key: dict[str, str]) -> str:
+def descryption(text: str, key: dict[str, str]) -> str:
     """Decrypts text by key"""
-    Src = ""
-    if Text == None or Key == None:
+    src = ""
+    if text == None or key == None:
         return "Отсутствует текст либо ключ шифрования!"
     try:
-        for Symbol in Text:
-            if Symbol in Key.keys():
-                Src += Key[Symbol]
+        for symbol in text:
+            if symbol in key.keys():
+                src += key[symbol]
             else:
-                Src += Symbol
+                src += symbol
     except:
         return "При попытке расшифровать текст произошла ошибка!"
-    return Src
+    return src
 
 
-def Encryption(Text: str, Key: dict[str, str]) -> str:
+def encryption(text: str, key: dict[str, str]) -> str:
     """Encrypts text by key"""
-    Src = ""
-    if Text == None or Key == None:
+    src = ""
+    if text == None or key == None:
         return "Отсутствует текст либо ключ шифрования!"
-    Text = Text.upper()
-    Keys = list(Key.keys())
-    Values = list(Key.values())
+    text = text.upper()
+    keys = list(key.keys())
+    values = list(key.values())
     try: 
-        for symbol in Text:
-            if symbol in Values:
-                Src += Keys[Values.index(symbol)]
+        for symbol in text:
+            if symbol in values:
+                src += keys[values.index(symbol)]
             else:
-                Src += symbol
+                src += symbol
     except: 
         return "При попытке зашифровать текст возникла ошибка!"
-    return Src
+    return src
 
 
-def TheFreqAnalysis(Text: str) -> dict:
+def freq_analysis(text: str) -> dict:
 
-    Dic = dict()
+    dic = dict()
     
-    for i in Text:
-        if i in Dic:
-            Dic[i] += 1
+    for i in text:
+        if i in dic:
+            dic[i] += 1
         else:
-            Dic[i] = 1
+            dic[i] = 1
 
-    for k in Dic.keys():
-        Dic[k] = Dic[k] / len(Text)
+    for k in dic.keys():
+        dic[k] = dic[k] / len(text)
 
-    return Dic
+    return dic
 
 
-def SaveFreqAnalysis(FilePath: str, Text: str) -> None:
+def save_frequency_analysis(file_path: str, text: str) -> None:
     """Saves the character frequency in a json file"""
-    FilePath = Path(FilePath)
+    file_path = Path(file_path)
 
-    with open(FilePath, 'w', encoding = "utf-8") as File:
-        json.dump(TheFreqAnalysis(Text), File)
+    with open(file_path, 'w', encoding = "utf-8") as file:
+        json.dump(freq_analysis(text), file)
