@@ -24,7 +24,7 @@ def read_text(file_path: str) -> str:
         return None
 
 
-def descryption(text: str, key: dict[str, str]) -> str:
+def decryption(text: str, key: dict[str, str]) -> str:
     """Decrypts text by key"""
     src = ""
     if text == None or key == None:
@@ -60,7 +60,7 @@ def encryption(text: str, key: dict[str, str]) -> str:
 
 
 def freq_analysis(text: str) -> dict:
-
+    """Frequency analysis calculation"""
     dic = dict()
     
     for i in text:

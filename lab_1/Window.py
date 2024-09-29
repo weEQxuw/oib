@@ -66,7 +66,7 @@ class MyApp(QWidget):
         self.setLayout(vbox)
 
     def descryption_text(self):
-        self.text_edit2.setText(descryption(self.text_edit1.toPlainText(), read_key(self.key_path[0])))
+        self.text_edit2.setText(decryption(self.text_edit1.toPlainText(), read_key(self.key_path[0])))
 
     def encryption_text(self):
         self.text_edit2.setText(encryption(self.text_edit1.toPlainText(), read_key(self.key_path[0])))
